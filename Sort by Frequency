@@ -1,0 +1,50 @@
+Given a string s, the task is to arrange the string according to the frequency of each character, in ascending order. If two elements have the same frequency, then they are sorted in lexicographical order.
+
+Examples:
+
+Input: s = "geeksforgeeks"
+Output: forggkksseeee
+Explanation: All the characters with minimum frequency will occur first and the one with same frequency will be arranged lexicographically.
+
+Input: s = "abc"
+Output: abc
+Explanation: The frequency is one for all characters hence they'll be arranged lexicographically.
+
+Constraints :
+1 ≤ s.length() ≤ 10^6
+s consist of lowercase english alphabets.
+
+Code:
+class Solution {
+  public:
+    string frequencySort(string &s) {
+        // code here
+        unordered_map<char, int> mp;
+        
+        for(char ch : s){
+            mp[ch]++;
+        }
+        
+        vector<pair<char, int>> vec(mp.begin(), mp.end());
+        
+        sort(vec.begin(), vec.end(), [](const auto &a, const auto &b){
+            if(a.second != b.second){
+                return a.second < b.second;
+            }
+            return a.first < b.first;
+        });
+        string result = "";
+        
+        for(const auto &ch: vec){
+            int val = ch.second;
+            char le = ch.first;
+            
+            while(val > 0){
+                result += le;
+                val--;
+            }
+            // result.append(ch.second, ch.first);
+        }
+        return result;
+    }
+};
