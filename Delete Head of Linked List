@@ -1,0 +1,42 @@
+Given a Linked List, delete the head of the Linked List and return the new head of the modified Linked List.
+Note: Set the original head to NULL.
+
+Examples:
+Input:
+Output: 2 -> 3 -> 1 -> 7
+Explanation: After deleting head from the given linked list, we'll be left with just 2 -> 3 -> 1 -> 7.
+    
+Input:
+Output: 5 -> 7 -> 8 -> 99 -> 100
+Explanation: After deleting head from the given linked list, we'll be left with just 5 -> 7 -> 8 -> 99 -> 100.
+   
+Constraints:
+1 ≤ number of nodes ≤ 10^5
+1 ≤ node->data ≤ 10^5
+
+Code:
+/*
+class Node
+{
+    int data;
+    Node next;
+
+    Node(int data)
+    {
+        this.data = data;
+        this.next = next;
+    }
+}
+*/
+
+class Solution {
+    public Node deleteHead(Node head) {
+        // code here
+        if(head == null) return null;
+        
+        Node temp = head;
+        head = head.next;
+        
+        return head;
+    }
+}
