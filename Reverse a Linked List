@@ -1,0 +1,54 @@
+Given the head of a singly linked list. Reverse the linked list and return the head of the reversed list.
+
+Examples:
+
+Input:
+
+Output: 4 -> 3 -> 2 -> 1
+Explanation: After reversing the linked list
+
+Input: 
+
+Output: 8 -> 9 -> 10 -> 7 -> 2
+Explanation: After reversing the linked list
+
+Input: 
+
+Output: 8
+Explanation:
+
+Constraints:
+1 ≤ number of nodes ≤ 10^5
+1 ≤ node->data ≤ 10^5
+
+Code:
+/* Structure of Linked List Node
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    Node reverseList(Node head) {
+        // code here
+        if(head == null) return null;
+        
+        Node temp = head;
+        Node prev = null;
+        
+        while(temp != null){
+            Node front = temp.next;
+            temp.next = prev;
+            prev = temp;
+            temp = front;
+        }
+        
+        return prev;
+    }
+}
