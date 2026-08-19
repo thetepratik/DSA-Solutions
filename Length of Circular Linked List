@@ -1,0 +1,48 @@
+Given a circular linked list of size n, find the length of the list (total number of nodes).
+Note: The tail of the circular linked list is connected to head.
+
+Examples:
+
+Input:1 2 3 4 5
+Output: 5
+
+Input: 
+Output: 6
+Constraints:
+1 ≤ nodes ≤ 10^3
+Code:
+/*
+struct Node
+{
+    int data;
+    Node * next;
+    Node (int x)
+    {
+        data=x;
+        next=NULL;
+    }
+
+};
+*/
+
+class Solution {
+  public:
+    int getLength(Node *head) {
+        // code here
+        Node* slow = head;
+        Node* fast = head;
+        int count = 0;
+        
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+            count++;
+            
+            if(slow == fast){
+                return count;
+            }
+            
+        }
+        return -1;
+    }
+};
