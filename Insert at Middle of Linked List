@@ -1,0 +1,49 @@
+Given the head of a Singly Linked List and a value x. Insert the key in the middle of the linked list.
+
+Examples :
+Input: 1->2->4, x = 3
+Output: 1->2->3->4
+Explanation: 
+
+Input: 10->20->40->50, x = 30
+Output: 10->20->30->40->50
+Explanation: 
+
+Constraints:
+0 ≤ number of nodes ≤ 10^5
+0 ≤ node->data , x ≤ 10^3
+
+Code:
+/* Strucutre of a link list node
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int val) {
+        data = val;
+        next = nullptr;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node *insertInMiddle(Node *head, int x) {
+        // code Here
+        Node* temp = new Node(x);
+        if(head == nullptr){
+            return temp;
+        }
+        Node* slow = head;
+        Node* fast = head->next;
+        
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        temp->next = slow->next;
+        slow->next = temp;
+       return head;
+    }
+};
