@@ -1,0 +1,51 @@
+Given a head of an unsorted linked list. Remove duplicate elements from this unsorted Linked List. 
+When a value appears in multiple nodes, the node which appeared first should be kept, all other duplicates are to be removed.
+
+Examples:
+Input: head = 5 -> 2 -> 2 -> 4
+Output: 5 -> 2 -> 4
+Explanation: Given linked list elements are 5 -> 2 -> 2 -> 4, in which 2 is repeated only. So, we will delete the extra repeated elements 2 from the linked list and the resultant linked list will contain 5->2->4
+ 
+Input: head = 2 -> 2 -> 2 -> 2 -> 2
+Output: 2
+Explanation: Given linked list elements are 2 -> 2 -> 2 -> 2 -> 2, in which 2 is repeated. So, we will delete the extra repeated elements 2 from the linked list and the resultant linked list will contain only 2.
+
+Constraints:
+1 ≤ no. of nodes in head ≤ 106
+0 ≤ head.node->data ≤ 106
+
+Code:
+/* Structure of linked list Node
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};*/
+class Solution {
+  public:
+    Node* removeDuplicates(Node* head) {
+                if(head == nullptr){
+                    return head;
+                }
+                unordered_set<int> st;
+                Node* temp = head;
+                Node* ans = new Node(0);
+                Node* pprev = ans;
+
+                while(temp != nullptr){
+                    if(st.find(temp->data) == st.end()){
+                        st.insert(temp->data);
+                        
+                        pprev->next = new Node(temp->data);
+                        pprev = pprev->next;
+                    }
+                    temp = temp->next;
+                }
+
+                    return ans->next;
+    }
+};
