@@ -1,0 +1,56 @@
+Given the head of a singly linked list, Returns true if the linked list is circular & false if it is not circular.
+
+A linked list is called circular if it is not NULL terminated and all nodes are connected in the form of a cycle. 
+
+Note: Linked list should not contain any inner loop. And a empty linked list is always a circular linked list.
+
+Examples:
+
+Input: 2 4 5 6 8 9
+k = 1
+Output: true
+Explanation: As shown in figure the first and last node is connected, i.e. 5 --> 2
+
+Input: 2 4 5 6 8 9
+k = 0
+Output: false
+Explanation: As shown in figure this is not a circular linked list.
+Constraints:
+1 <= number of nodes <= 100
+1 <= node -> data <= 10^4
+
+Code:
+/* Link list Node
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+
+};
+*/
+class Solution {
+  public:
+    bool isCircular(Node *head) {
+        // code here
+        if(head == nullptr){
+            return false;
+        }
+        
+        Node* slow = head;
+        Node* fast = head;
+        
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+};
