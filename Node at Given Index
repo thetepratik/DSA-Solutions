@@ -1,0 +1,47 @@
+Given the head of a singly linked list and an integer k, find the value of the node present at the given 1-based index x. 
+Return -1 if no node exists at the given index.
+
+Examples :
+Input: k = 3, 
+Output: 3
+Explanation: The node value at index 3 is 3.
+
+Input: k = 6, 
+Output: -1
+Explanation: The linked list contains fewer than 6 nodes, so no node exists at index 6.
+
+Constraints:
+1 ≤ number of nodes ≤ 10^5
+1 ≤ node->data ≤ 10^5
+1 ≤ k ≤ 10^5
+
+Code:
+/* Node Structure
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+
+class Solution {
+  public:
+    int getNode(Node* head, int k) {
+        // code here
+        int count = 0;
+        Node* temp = head;
+        while(temp != nullptr){
+            count++;
+            if(count == k){
+                return temp->data;
+            }
+            temp = temp->next;
+        }
+        return -1;
+    }
+};
