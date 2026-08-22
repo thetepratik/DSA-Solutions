@@ -1,0 +1,59 @@
+Given two linked lists sorted in increasing order, create a new linked list containing the intersection of the two linked lists. 
+The intersection should contain an element as many times as it appears in both linked lists. The original linked lists must not be modified.
+
+Examples:
+Input: head1 = 1 -> 2 -> 3 -> 4 -> 6, 
+head2 = 2 -> 4 -> 6 -> 8
+Output: 2 -> 4-> 6
+Explanation: For the given two linked list, 2, 4 and 6 are the elements in the intersection.
+
+Input: head1= 10 -> 20 -> 40 -> 50, head2= 15 -> 40
+Output: 40
+Explanation:
+
+Constraints:
+1 ≤ no. of nodes in head1, head1.node->data, no. of nodes in head2, head2.node->data ≤ 10^4
+
+Code:
+/* Structure of a Linked list Node 
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+}; */
+
+class Solution {
+  public:
+    Node* findIntersection(Node* head1, Node* head2) {
+        // code here
+        if(head1 == nullptr || head2 == nullptr) return nullptr;
+        map<int, int> ans;
+        Node* temp = head1;
+        
+        while(temp != nullptr){
+            ans[temp->data]++;
+            temp = temp->next;
+        }
+        temp = head2;
+        while(temp != nullptr){
+            ans[temp->data]++;
+            temp = temp->next;
+        }
+        
+        Node* dummy = new Node(0);
+        temp = dummy;
+        
+        for(auto it : ans){
+            if(it.second == 2){
+                temp->next = new Node(it.first);
+                temp = temp->next;
+            }
+        }
+        return dummy->next;
+    }
+};
