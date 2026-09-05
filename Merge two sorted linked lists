@@ -1,0 +1,64 @@
+Given the head of two sorted linked lists consisting of nodes respectively. Merge both lists and return the head of the sorted merged list.
+
+Examples:
+Input:  
+Output: 2 -> 3 -> 5 -> 10 -> 15 -> 20 -> 40
+
+Input:  
+Output: 1 -> 1 -> 2 -> 4
+Explanation:
+
+Constraints:
+1 ≤ list1.size, list2.size ≤ 103
+0 ≤ node->data ≤ 105
+
+Code:
+/*
+class Node {
+ public:
+    int data;
+    Node *next;
+
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* sortedMerge(Node* head1, Node* head2) {
+        // code here
+        Node* dummy = new Node(0);
+        Node* temp = dummy;
+        Node* ht1 = head1;
+        Node* ht2 = head2;
+        
+        while(ht1 && ht2){
+            if(ht1->data < ht2->data){
+                temp->next = ht1;
+                ht1 = ht1->next;
+            }else{
+                temp->next = ht2;
+                ht2 = ht2->next;
+            }
+            temp = temp->next;
+        }
+        
+        while(ht1 != nullptr){
+            temp->next = ht1;
+            ht1 = ht1->next;
+            temp = temp->next;
+        }
+        
+        while(ht2 != nullptr){
+            temp->next = ht2;
+            ht2 = ht2->next;
+            temp = temp->next;
+        }
+        temp->next = nullptr;
+        
+        return dummy->next;
+    }
+};
