@@ -1,0 +1,53 @@
+Given head of a doubly linked list containing n nodes, return a 2D array where:
+
+The first row contains the elements obtained by traversing the linked list in forward direction.
+The second row contains the elements obtained by traversing the linked list in backward direction.
+Examples:
+
+Input: head: 1 <-> 2 <-> 3 <-> 4 <-> 5
+ 
+Output: [[1, 2, 3, 4, 5], [5, 4, 3, 2, 1]]
+Explanation: After traversing forward the linked list will look like 1 -> 2 -> 3 -> 4 -> 5 and from backward will 5 -> 4 -> 3 -> 2 -> 1.
+Input: head: 34 <-> 22
+ 
+Output: [[34, 22], [22, 34]]
+Explanation: After traversing forward the linked list will look like 34 -> 22 and from backward will 22 -> 34.
+Constraints:
+1 ≤ n ≤ 105
+0 ≤ data of nodes ≤ 105
+
+Code:
+/* Structure of doubly linked list Node
+class Node {
+  public:
+    int data;
+    Node *next;
+    Node *prev;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+        prev = nullptr;
+    }
+};*/
+class Solution {
+  public:
+    vector<vector<int>> displayList(Node *head) {
+        
+        vector<int> ans1;
+        Node* temp = head;
+        
+        while(temp->next != nullptr){
+            ans1.push_back(temp->data);
+            temp = temp->next;
+        }
+        ans1.push_back(temp->data);
+        
+        vector<int> ans2;
+        while(temp != nullptr){
+            ans2.push_back(temp->data);
+            temp = temp->prev;
+        }
+        return {ans1, ans2};
+    }
+};
