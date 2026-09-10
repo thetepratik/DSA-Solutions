@@ -1,0 +1,74 @@
+Given an array arr[] of integers, the goal is to create a Doubly Linked List (DLL) where each element of the array is represented as a node. The nodes must be linked in the same sequence as the array, maintaining both forward (next) and backward (prev) connections. Return the head of the constructed doubly linked list.
+
+Examples:
+
+Input: arr[] = [1, 2, 3, 4]
+Output: 1 <-> 2 <-> 3 <-> 4
+Explanation: Each array element becomes a node in the doubly linked list. Node 1 connects forward to 2, and node 2 connects back to 1, and so on.
+
+Input: arr[] = [10, 20]
+Output: 10 <-> 20
+Explanation: The list has two nodes. Node 10 points to 20, and node 20 points back to 10.
+
+Constraints:
+1 ≤ arr.size() ≤ 104
+0 ≤ arr[i] ≤ 104
+
+Code:
+/* class Node {
+  public:
+    int data;
+    Node* next;
+    Node* prev;
+    Node(int d) {
+        data = d;
+        next = nullptr;
+        prev = nullptr;
+    }
+}; */
+
+class Solution {
+  public:
+    Node* createDLL(vector<int>& arr) {
+        // code here
+        
+        Node* head = new Node(arr[0]);
+        Node* temp = head;
+        
+        for(int i=1;i<arr.size();i++){
+            Node* curr = new Node(arr[i]);
+            temp->next = curr;
+            curr->prev = temp;
+            temp = curr;
+        }
+        return head;
+    }
+};/* class Node {
+  public:
+    int data;
+    Node* next;
+    Node* prev;
+    Node(int d) {
+        data = d;
+        next = nullptr;
+        prev = nullptr;
+    }
+}; */
+
+class Solution {
+  public:
+    Node* createDLL(vector<int>& arr) {
+        // code here
+        
+        Node* head = new Node(arr[0]);
+        Node* temp = head;
+        
+        for(int i=1;i<arr.size();i++){
+            Node* curr = new Node(arr[i]);
+            temp->next = curr;
+            curr->prev = temp;
+            temp = curr;
+        }
+        return head;
+    }
+};
