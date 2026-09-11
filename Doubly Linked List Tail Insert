@@ -1,0 +1,53 @@
+Given a doubly linked list of size n, insert an element data after the tail. 
+The driver code will print the LinkedList both forward and then backward to verify the result.
+Examples:
+
+Input:
+data = 8
+Output: 
+1 2 3 4 5 8
+8 5 4 3 2 1
+
+Input:
+data = 89
+Output: 
+2 4 6 7 5 1 10 89
+89 10 1 5 7 6 4 2
+Constraints:
+1 ≤ number of nodes ≤ 10^3
+
+Code:
+/* Structure of doubly linked list node
+class Node
+{
+    int data;
+    Node * next;
+    Node * prev;
+    Node (int x)
+    {
+        data = x;
+        next = nullptr;
+        prev = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+    Node *insertInTail(Node *head, int data) {
+        // code here
+        Node* newNode = new Node(data);
+        if(head == nullptr) return newNode;
+        
+        Node* temp = head;
+        
+        while(temp->next != nullptr){
+            temp = temp->next;
+        }
+        
+        temp->next = newNode;
+        newNode->prev = temp;
+        // temp = temp->next;
+        
+        return head;
+    }
+};
