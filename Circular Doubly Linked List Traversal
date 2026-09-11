@@ -1,0 +1,51 @@
+Given a circular doubly linked list consisting of n elements, return the circular doubly linked list as an array. The driver code will print the list both forward and backward to verify the solution.
+
+Examples:
+Input:
+Output:
+1 2
+2 1
+
+
+Input:
+ 
+Output:
+2 5 7 8 99 100
+100 99 8 7 5 2
+Constraints:
+1 ≤ n ≤ 10^3
+
+code:
+/* Structure of a circular doubly link list node
+class Node {
+  public:
+    int data;
+    Node *next;
+    Node *prev;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+        prev = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+    vector<int> displayList(Node *head) {
+        // code here
+        vector<int> ans;
+        if(head == nullptr) return ans;
+        
+        Node* slow = head;
+        Node* fast = head;
+        
+        do{
+            ans.push_back(slow->data);
+            slow = slow->next;
+            fast = fast->next->next;
+        }while(slow != fast && slow != head);
+        
+        return ans;
+    }
+};
