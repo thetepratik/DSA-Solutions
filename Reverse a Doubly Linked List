@@ -1,0 +1,61 @@
+Given the head of a doubly linked list, reverse the list and return the head of the reversed doubly linked list.
+Note: Driver code will print the returned list in both forward and backward directions.
+
+Examples:
+Input:
+Output: 
+5 <-> 4 <-> 3
+3 <-> 4 <-> 5
+Explanation: After reversing the given doubly linked list the new list will be 5 <-> 4 <-> 3.
+
+Input: 
+Output: 
+196 <-> 59 <-> 122 <-> 75
+75 <-> 122 <-> 59 <-> 196
+Explanation: After reversing the given doubly linked list the new list will be 196 <-> 59 <-> 122 <-> 75.
+
+Constraints:
+1 ≤ size of linked list ≤ 10^6
+0 ≤ node.data ≤ 10^4
+
+Code:
+/* Structure of Doubly Linked List Node
+class Node {
+  public:
+    int data;
+    Node *next;
+    Node *prev;
+
+    Node(int val) {
+        data = val;
+        next = nullptr;
+        prev = nullptr;
+    }
+};
+
+*/
+class Solution {
+  public:
+    Node *reverse(Node *head) {
+        if(head == nullptr || head->next == nullptr){
+            return head;
+        }
+
+        Node* temp = head;
+        Node* prevn = nullptr;
+        
+        while(temp != nullptr){
+            prevn = temp->prev;
+            temp->prev = temp->next;
+            temp->next = prevn;
+            temp = temp->prev;
+        }
+        
+        if(prevn != nullptr){
+            head = prevn->prev;
+        }
+        
+        
+        return head;
+    }
+};
