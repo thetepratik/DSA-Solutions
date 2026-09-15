@@ -1,0 +1,53 @@
+Given a sorted doubly linked list containing distinct positive integers and an integer target, find all pairs of nodes whose values add up to target.
+
+Examples :
+Input:
+target = 7
+Output: [[1, 6], [2, 5]]
+Explanation: There are two pairs (1, 6) and (2,5) with sum 7.
+Input: 
+
+target = 6
+Output: [[1, 5]]
+Explanation: There is one pairs  (1, 5) with sum 6.
+Constraints:
+
+1 ≤ size of linked list, target ≤ 10^5
+0 ≤ node.data ≤ 10^5
+
+Code:
+/* Structure of Doubly Linked List Node
+class Node {
+  public:
+    int data;
+    Node *next;
+    Node *prev;
+
+    Node(int val) {
+        data = val;
+        next = nullptr;
+        prev = nullptr;
+    }
+}; */
+
+class Solution {
+  public:
+    vector<vector<int>> givenSumPairs(Node* head, int target) {
+        // code here
+        vector<vector<int>> curr;
+        unordered_set<int> seen;
+        Node* temp = head;
+        
+        while(temp != nullptr){
+            int comp = target - temp->data;
+            if(seen.count(comp)){
+                curr.push_back({comp, temp->data});
+            }
+            seen.insert(temp->data);
+            temp = temp->next;
+        }
+        
+        sort(curr.begin(), curr.end());
+        return curr;
+    }
+};
