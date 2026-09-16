@@ -1,0 +1,21 @@
+Print numbers from n to 1 (space separated) without the help of loops.
+
+Examples :
+
+Input: n = 10
+Output: 10 9 8 7 6 5 4 3 2 1
+Constraints :
+1 ≤ n ≤ 1000
+
+Code:
+class Solution {
+  public:
+    void printNos(int n) {
+        // code here
+        if(n == 0){
+            return;
+        }
+        cout<<n<<" ";
+        printNos(n-1);
+    }
+};
