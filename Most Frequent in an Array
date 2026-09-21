@@ -1,0 +1,43 @@
+You are given an integer array arr[]. You need to return the element which occurs maximum times in arr[].
+Note: If multiple such elements exists return the maximum element.
+
+Example: 
+
+Input: arr[] = [1, 2, 2, 2, 4, 1]
+Output: 2
+Explanation: 2 is most frequent element of this array with 3 occurrences.
+
+Input: arr[] = [1, -5, 8, 1]
+Output: 1
+Explanation: 1 is most frequent element of this array with 2 occurrences.
+
+Input: arr[] = [3, 0, 0, 3, 8]
+Output: 3
+Explanation: 0 and 3 are two most frequent elements of this array. 3 is the maximum one.
+
+Constraints:
+1 ≤ arr.size() ≤ 10^5
+-105 ≤ arr[i] ≤ 10^5
+
+Code:
+class Solution {
+  public:
+    int mostFreqEle(vector<int>& arr) {
+        // code here
+        int maxi = 0;
+        int maxfreq = 0;
+        map<int, int> ans;
+        
+        for(int i=0;i<arr.size();i++){
+            ans[arr[i]]++;
+        }
+        
+        for(auto it : ans){
+            if(it.second >= maxfreq){
+                maxfreq = it.second;
+                maxi = it.first;
+            }
+        }
+        return maxi;
+    }
+};
