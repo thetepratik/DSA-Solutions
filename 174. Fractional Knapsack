@@ -1,0 +1,45 @@
+You have n items; the i-th item has value val[i] and weight wt[i].
+A knapsack can carry at most capacity units of weight.
+You may take any fraction of an item (i.e. split items).
+Return the maximum total value that can be placed in the knapsack, rounded to exactly 6 decimal places.
+
+Example 1:
+Input: val = [60,100,120], wt = [10,20,30], capacity = 50
+Output: 240.000000
+Explanation:
+ • Take item 0 (w=10, v=60)
+ • Take item 1 (w=20, v=100)
+ • Take 2⁄3 of item 2 (w=20, v=80)
+Total value = 60 + 100 + 80 = 240
+
+Example 2:
+Input: val = [60,100], wt = [10,20], capacity = 50
+Output: 160.000000
+Explanation: Both items fit entirely (total weight 30 ≤ 50).
+
+Code:
+class Solution {
+public:
+    double fractionalKnapsack(vector<long long>& val, vector<long long>& wt, long long capacity) {
+        // Your code goes here
+        vector<pair<int,int>> items;
+        for(int i=0;i<val.size();i++){
+            items.push_back({val[i], wt[i]});
+        }
+        
+        sort(items.begin(), items.end(), [](auto &a, auto &b) {
+            return 1LL * a.first * b.second > 1LL * b.first * a.second;
+        });
+                double ans = 0;
+        for(auto it : items){
+            if(capacity < it.second){
+                double num = (double)it.first * capacity/it.second;
+                ans += num;
+                break;
+            }
+            capacity = capacity - it.second;
+            ans += it.first;
+        }
+    return ans;
+    }
+};
