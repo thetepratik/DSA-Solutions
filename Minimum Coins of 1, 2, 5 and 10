@@ -1,0 +1,37 @@
+Given an integer n representing a target value and an infinite supply of coins of denominations 1, 2, 5, and 10, 
+find the minimum number of coins required to make the value n.
+
+Examples:
+
+Input: n = 39
+Output: 6
+Explanation: 39 can be formed using 3 coins of 10 rupees, 1 coin of 5 rupees and 2 coins of 2 rupees so minimum coins required are 6.
+
+Input: n = 121
+Output: 13
+Explanation: 121 can be formed using 12 coins of 10 rupees and 1 coin of 1 rupees.
+
+Constraints:
+1 ≤ n ≤ 10^6
+
+Code:
+class Solution {
+  public:
+    int findMin(int n) {
+        // code here
+        int count = 0;
+        while(n > 0){
+            if(n >= 10){
+                n -= 10;
+            }else if(n >= 5){
+                n -= 5;
+            }else if(n >= 2){
+                n -= 2;
+            }else if(n >= 1){
+                n -= 1;
+            }
+            count++;
+        }
+        return count;
+    }
+};
