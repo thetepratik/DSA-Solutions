@@ -1,0 +1,43 @@
+Given two numbers n and s , find the largest number that can be formed with n digits and whose sum of digits should be equals to s. 
+Return -1 if it is not possible.
+
+Examples :
+Input: n = 2, s = 9
+Output: 90
+Explaination: It is the biggest number with sum of digits equals to 9.
+
+Input: n = 3, s = 20
+Output: 992
+Explaination: It is the biggest number with sum of digits equals to 20.
+
+Input: n = 1, s = 0
+Output: 0
+
+Constraints:
+1 ≤ n ≤ 10^5
+0 ≤ s ≤ 10^5
+
+
+Code:
+
+class Solution {
+  public:
+    string findLargest(int n, int s) {
+        if (s > 9 * n) return "-1";
+        if (s == 0) return (n == 1) ? "0" : "-1";
+
+        string ans = "";
+
+        for (int i = 0; i < n; i++) {
+            if (s >= 9) {
+                ans += '9';
+                s -= 9;
+            } else {
+                ans += char('0' + s);
+                s = 0;
+            }
+        }
+
+        return ans;
+    }
+};
